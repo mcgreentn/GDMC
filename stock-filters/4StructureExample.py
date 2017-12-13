@@ -68,7 +68,7 @@ def drawLineConstrained(scratchpad, (blockID, blockData), (x,y,z), (x1,y1,z1), m
 
 # MAIN SECTION #
 # Every agent must have a "perform" function, which has three parameters
-# 1: the level (aka the minecraft world). 2: the box 3: input options from the user
+# 1: the level (aka the minecraft world). 2: the box
 def perform(level, box, options):
 	quadrants = splitIntoQuadrants(box)
 	# for each quadrant
@@ -350,7 +350,7 @@ def cellularAutomataGeneration(matrix, width, height):
 def decideCell(top, bottom):
 	if top + bottom == 1:
 		chance = random.randint(0, 100)
-		if chance < 50:
+		if chance < 20:
 			return 0
 		else:
 			return 1
