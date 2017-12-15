@@ -23,11 +23,11 @@ inputs = (
 # Every agent must have a "perform" function, which has three parameters
 # 1: the level (aka the minecraft world). 2: the selected box from mcedit. 3: User defined inputs from mcedit
 def perform(level, box, options):
-	quadrants = binaryPartition(box)
+	yards = binaryPartition(box)
 	# for each quadrant
-	for quad in quadrants:
-		buildFence(level, quad)
-		buildStructure(level, quad, options)
+	for yard in yards:
+		buildFence(level, yard)
+		buildStructure(level, yard, options)
 
 #splits the given box into 4 unequal areas
 def binaryPartition(box):
@@ -266,13 +266,12 @@ def generateWalls(level, floor, buildingHeightInfo, options):
 						utilityFunctions.setBlock(level, (20, 0), floor.minx+x, buildingHeightInfo[2] + y, floor.maxz)
 	print "Z Walls"
 	for k in range(2):
-		# print "j:",j
 		# we have our matrix for CA, now lets do CA
 		matrix = [[0 for x in range(depth)] for y in range(height)]
 		matrixnew = randomlyAssign(matrix, depth, height)
 
 		# do 25 generations
-		for gen in range(0,5):
+		for gen in range(0,25):
 			print "Generation ", gen
 			matrixnew = cellularAutomataGeneration(matrixnew, depth, height)
 
