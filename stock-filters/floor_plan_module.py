@@ -21,9 +21,3 @@ def perform(level, box, options):
 	designer = FloorDesigner(level, box, options)
 	designer.build_floor()
 
-
-	
-# def advance_digger(floor):
-
-
-# def place_room(floor):

@@ -10,6 +10,7 @@ class Translator:
 		self.options = options
 
 	def translate_floor(self):
+		# translates the floor into minecraft blocks. Doors get two conditions, one for the door itself, and one for the wall above it
 		for y in range(1, utilityFunctions.getBoxSize(self.box)[1]):
 			for x in range(0, self.floor.shape[0]):
 				for z in range(0, self.floor.shape[1]):
@@ -30,8 +31,12 @@ class Translator:
 
 
 	def translate_door(self, coord, y):
-		# up and down
+		''' 
+		A very lazy implementation of this, by brute forcing a try catch in there to stop out-of-bounds exceptions because of the outer door
+		Someone much better than I will hopefully one day come along and fix my broken mess of code :)
+		'''
 		try:
+			# up and down
 			if self.floor[coord[0], coord[1] - 1] != -1 and self.floor[coord[0], coord[1] - 1] != 0 and self.floor[coord[0], coord[1] + 1] != -1 and self.floor[coord[0], coord[1] + 1] != 0:
 				# basically "are there any walls above or below me?"
 				# if not, the door will go up and down
@@ -52,5 +57,5 @@ class Translator:
 				# bottom door, north-south
 				utilityFunctions.setBlock(self.level, (64, 1), (self.box.minx + coord[0]), (self.box.miny + y), (self.box.minz + coord[1]))
 			else:
-					# top door, north-south
+				# top door, north-south
 				utilityFunctions.setBlock(self.level, (64, 9), self.box.minx + coord[0], self.box.miny + y, self.box.minz + coord[1])
