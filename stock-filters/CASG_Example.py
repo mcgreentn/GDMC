@@ -184,25 +184,25 @@ def createPillars(level, floor, options):
 	ycoords = []
 	# similarly to fences, we need to countdown on each of the four corners and find the block where the ground starts, then start building pillars above that height
 	midpointFloorHeight = 0
-	for y in xrange(floor.maxy, floor.miny, -1):
+	for y in xrange(floor.maxy, floor.miny-1, -1):
 		# get this block
 		tempBlock = level.blockAt(floor.minx, y, floor.minz)
 		if tempBlock != 0:
 			cornerBlockStarts.append((floor.minx, y+1, floor.minz))
 			break;
-	for y in xrange(floor.maxy, floor.miny, -1):
+	for y in xrange(floor.maxy, floor.miny-1, -1):
 		# get this block
 		tempBlock = level.blockAt(floor.minx, y, floor.maxz)
 		if tempBlock != 0:
 			cornerBlockStarts.append((floor.minx, y+1, floor.maxz))
 			break;
-	for y in xrange(floor.maxy, floor.miny, -1):
+	for y in xrange(floor.maxy, floor.miny-1, -1):
 		# get this block
 		tempBlock = level.blockAt(floor.maxx, y, floor.minz)
 		if tempBlock != 0:
 			cornerBlockStarts.append((floor.maxx, y+1, floor.minz))
 			break;
-	for y in xrange(floor.maxy, floor.miny, -1):
+	for y in xrange(floor.maxy, floor.miny-1, -1):
 		# get this block
 		tempBlock = level.blockAt(floor.maxx, y, floor.maxz)
 		if tempBlock != 0:
