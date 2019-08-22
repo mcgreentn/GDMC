@@ -79,6 +79,6 @@ def makePillar(level,highestTile,options):
 	else:
 		material = highestTile.material
 	for step in range(height):
-		utilityFunctions.setBlock(level, (material, 0), highestTile.x, highestTile.y+step, highestTile.z)
+		utilityFunctions.setBlock(level, (material, 0), highestTile.x, highestTile.y+step+1, highestTile.z)
 
 
