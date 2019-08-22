@@ -1,4 +1,4 @@
-# This filter creates a road using A* between start and end point
+# This filter creates staircases either at a corner or at a random point in the selection
 # This filter: rocanaan@gmail.com (mikecgreen.com)
 
 import time # for timing

@@ -13,12 +13,15 @@ import utilityFunctions as utilityFunctions
 #inputs are taken from the user. Here I've just showing labels, as well as letting the user define
 # what the main creation material for the structures is
 inputs = (
-	("AStar Road", "label"),
+	("Connected Components", "label"),
 	("Material", alphaMaterials.Cobblestone), # the material we want to use to build the mass of the structures
 	("Max Height", 255),
 	("Min Height", 0),
 	("Creator: Rodrigo Canaan", "label"),
 	)
+
+
+WATER = 9
 
 class tile:
 	def __init__(self, x, y, z, material):
@@ -37,18 +40,25 @@ def perform(level, box, options):
 	colorMap = getColorMap(tileMap)
 	print colorMap
 
-	# tileLow = getLowest(heightmap)
-	# tileHigh = getHighest(heightmap)
+	paintComponents(level,tileMap,colorMap,options["Material"].ID)
 
-	# makeRoad(tileLow,tileHigh, options["Material"])
+def paintComponents(level,tileMap,colorMap,material):
+	for i in range(len(tileMap)):
+		for j in range(len(tileMap[i])):
+			if (tileMap[i][j].material!=WATER):
+				tile = tileMap[i][j]
+				print "painting {} {} with ".format(i,j,material)
+				utilityFunctions.setBlock(level, (material+colorMap[i][j]-1, 0), tile.x, tile.y, tile.z)
+
+
+
+
 
 def getTileMap (level, box, maxHeight, minHeight):
 
 
 	xmin = box.minx
-	print xmin
 	xmax = box.maxx
-	print xmax
 	zmin = box.minz
 	zmax = box.maxz
 
@@ -82,12 +92,11 @@ def getColorMap(tileMap):
 	return colorMap
 
 def fillColor(i,j,tileMap,colorMap,currentColor):
-	water = 9
 	if i>=len(colorMap) or  j>=len(colorMap[0]) or i<0 or j<0: 
 		return currentColor
 	elif colorMap[i][j]!=0:
 		return currentColor
-	elif tileMap[i][j].material == water:
+	elif tileMap[i][j].material == WATER:
 		colorMap[i][j] = -1
 		return currentColor
 	else:
