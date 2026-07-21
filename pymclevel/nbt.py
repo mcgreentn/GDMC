@@ -18,6 +18,7 @@ http://www.minecraft.net/docs/NBT.txt
 Copyright 2010 David Rio Vierra
 """
 import collections
+import collections.abc
 from contextlib import contextmanager
 import gzip
 import itertools
@@ -288,7 +289,7 @@ def write_string(string, buf):
 # noinspection PyMissingConstructor
 
 
-class TAG_Compound(TAG_Value, collections.MutableMapping):
+class TAG_Compound(TAG_Value, collections.abc.MutableMapping):
     """A heterogenous list of named tags. Names must be unique within
     the TAG_Compound. Add tags to the compound using the subscript
     operator [].    This will automatically name the tags."""
@@ -678,4 +679,3 @@ except ImportError as err:
     log.error("Failed to import Cythonized nbt file. Running on (very slow) pure-python nbt fallback.")
     log.error("(Did you forget to run 'setup.py build_ext --inplace'?)")
     log.error("%s"%err)
-

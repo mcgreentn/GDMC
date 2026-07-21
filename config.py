@@ -18,6 +18,7 @@ Configuration settings and storage.
 """
 import logging
 import collections
+import collections.abc
 import ConfigParser
 
 from locale import getdefaultlocale
@@ -310,7 +311,7 @@ class ColorValue(ListValue):
         return tuple(min(max(x, 0.0), 1.0) for x in values)
 
 
-class ConfigDict(collections.MutableMapping):
+class ConfigDict(collections.abc.MutableMapping):
     def __init__(self, *args, **kwargs):
         self.dict = dict(*args, **kwargs)
         self.keyorder = []
